@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Las tiras :: inclusão de lasTiras</title>
+    </h:head>
+    <h:body>
+        <h3>Inclusão de lasTiras</h3>
+        <f:view>
+            <h:form>
+                <table border="0" width="1" cellspacing="10" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td><h:outputText value="Data:"/></td>
+                            <td>
+                                <h:inputText value="#{lasTirasStripesCreator.day}" size="2" /><h:outputText value="/"/>
+                                <h:inputText value="#{lasTirasStripesCreator.month}" size="2"/><h:outputText value="/"/>
+                                <h:inputText value="#{lasTirasStripesCreator.year}" size="4"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Url UM:"/></td>
+                            <td><h:inputText value="#{lasTirasStripesCreator.stripeUrlOne}"/></td>
+                            <td>
+                                <h:selectOneMenu value="#{lasTirasStripesCreator.authorIdOne}">
+                                    <f:selectItems value="#{lasTirasStripesCreator.authors}" var="c"
+                                                   itemLabel="#{c.name}" itemValue="#{c.id}" />
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Url DOIS:"/></td>
+                            <td><h:inputText value="#{lasTirasStripesCreator.stripeUrlTwo}"/></td>
+                            <td>
+                                <h:selectOneMenu value="#{lasTirasStripesCreator.authorIdTwo}">
+                                    <f:selectItems value="#{lasTirasStripesCreator.authors}" var="c"
+                                                   itemLabel="#{c.name}" itemValue="#{c.id}" />
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>                         
+                        <tr>
+                            <td><h:outputText value="Url TRES:"/></td>
+                            <td><h:inputText value="#{lasTirasStripesCreator.stripeUrlThree}"/></td>
+                            <td>
+                                <h:selectOneMenu value="#{lasTirasStripesCreator.authorIdThree}">
+                                    <f:selectItems value="#{lasTirasStripesCreator.authors}" var="c"
+                                                   itemLabel="#{c.name}" itemValue="#{c.id}" />
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>                         
+                        <tr>
+                            <td><h:outputText value="Url QUATRO:"/></td>
+                            <td><h:inputText value="#{lasTirasStripesCreator.stripeUrlFour}"/></td>
+                            <td>
+                                <h:selectOneMenu value="#{lasTirasStripesCreator.authorIdFour}">
+                                    <f:selectItems value="#{lasTirasStripesCreator.authors}" var="c"
+                                                   itemLabel="#{c.name}" itemValue="#{c.id}" />
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>                         
+                        <tr>
+                            <td><h:outputText value="Url CINCO:"/></td>
+                            <td><h:inputText value="#{lasTirasStripesCreator.stripeUrlFive}"/></td>
+                            <td>
+                                <h:selectOneMenu value="#{lasTirasStripesCreator.authorIdFive}">
+                                    <f:selectItems value="#{lasTirasStripesCreator.authors}" var="c"
+                                                   itemLabel="#{c.name}" itemValue="#{c.id}" />
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>                         
+                        <tr>
+                            <td><h:outputText value="Url SEIS:"/></td>
+                            <td><h:inputText value="#{lasTirasStripesCreator.stripeUrlSix}"/></td>
+                            <td>
+                                <h:selectOneMenu value="#{lasTirasStripesCreator.authorIdSix}">
+                                    <f:selectItems value="#{lasTirasStripesCreator.authors}" var="c"
+                                                   itemLabel="#{c.name}" itemValue="#{c.id}" />
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>                         
+                        <tr>
+                            <th><input type="submit" value="Salvar" onclick="#{lasTirasStripesCreator.saveStrip()}"/></th>
+                            <th></th>
+                        </tr>
+                    </tbody>
+                </table>
+
+                
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

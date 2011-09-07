@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Las tiras :: inclusao de autor</title>
+    </h:head>
+    <h:body>
+        <h3>Inclusao de autor</h3>
+        <f:view>
+            <h:form>
+                <h4><h:outputText value="#{authorCreator.message}" rendered="#{authorCreator.haveMessage()}"/></h4>
+                <table border="0" width="1" cellspacing="10" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td><h:outputText value="Nome:"/></td>
+                            <td><h:inputText id="autorName" value="#{authorCreator.name}"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Banner:"/></td>
+                            <td><h:inputText id="autorBanner" value="#{authorCreator.bannerUrl}"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Endereço:"/></td>
+                            <td><h:inputText id="autorAddress" value="#{authorCreator.webSite}"/></td>
+                        </tr>                         
+                        <tr>
+                            <th><input type="submit" value="Salvar" onclick="#{authorCreator.saveAuthor()}"/></th>
+                            <th></th>
+                        </tr>
+                    </tbody>
+                </table>
+
+                
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
