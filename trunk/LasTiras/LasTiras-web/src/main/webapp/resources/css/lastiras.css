@@ -1,0 +1,79 @@
+/* 
+    Document   : lastiras
+    Created on : 17/07/2011, 13:42:39
+    Author     : matheus
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+div.page{
+    
+}
+
+#panelSubscribe{
+    font-size: 10px;
+    font-weight: lighter;
+    color: black;
+}
+
+#datePanelGrip{
+    font-size: 30px;
+    font-weight: bolder;
+    color: black;
+    text-align: center;
+}
+
+#currentDate{
+    text-align: center;
+}
+
+div.header{
+    position: absolute;
+    text-align: center;
+    left: 200px;
+    top: 10px;
+    width: 700px;
+    height: 100px;
+    font-family: "Showcard Gothic";
+    font-size: 20px;
+    font-weight: bolder;
+    border: black;
+    color: blue;
+}
+
+div.content{
+    position: absolute;
+    font-size: 12px;
+    top: 200px;
+    left: 200px;
+    width: 700px;
+    height: 700px;
+    border: black;
+}
+
+div.footer{
+    font-size: 8px;
+    font-weight: lighter;
+    position: absolute;
+    left: 50px;
+    width: 700px;
+    border: black;
+}
+
+div.addnews{
+    position: fixed;
+    font-size: 15px;
+    font-family: "arial";
+    color: white;
+    top: 200px;
+    background-color: gray;
+    width: 40px;
+}

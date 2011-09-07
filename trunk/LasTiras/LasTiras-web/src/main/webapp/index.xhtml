@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:g="http://base.google.com/ns/1.0">
+    <f:metadata>
+        <f:viewParam name="q" value="#{lasTirasList.counter}"/>
+    </f:metadata>
+    <h:head>
+        <title>Las Tiras</title>        
+    </h:head>
+    <h:body>
+        <ui:composition template="commons/template.xhtml">    
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+
+                        <h:panelGrid columns="1">
+                            <h:panelGrid id="datePanelGripOne" style="width: 700px; text-align: center; font-size: 21px; color: #000000;" columns="3" width="700">
+                                 <h:link style="width: 25px; text-align: center; font-size: 21px; color: #000000;" outcome="index.xhtml">
+                                     <img width="40px" src="resources/images/left.png"></img>
+                                    <f:param name="q" value="#{lasTirasList.counter-1}"/>
+                                </h:link>
+                                <h:outputText id="currentDateOne" style="width: 233px; font-family: 'arial'; text-align: center; font-size: 25px; color: #4075A6; font-weight: bolder" value="#{lasTirasList.acquireStripDate()}" />
+                                <h:link style="width: 25px; text-align: center; font-size: 21px; color: #000000;" outcome="index.xhtml">
+                                    <img width="40px" src="resources/images/right.png"></img>
+                                    <f:param name="q" value="#{lasTirasList.counter+1}"/>
+                                </h:link>
+                            </h:panelGrid>
+
+                            <h:dataTable style="width: 700px; text-align: center;" value="#{lasTirasList.currentStripe.strips}" var="item">
+                                <h:column>
+                                    <h:panelGrid columns="1" style="width: 700px; text-align: center;">
+
+                                        <a href="#{item.stripUrl}">
+                                            <img id="#{lasTirasList.acquireId(item)}" style="max-width: 700px;" src="resources/images/ajax-loader.gif" onload="#{lasTirasList.acquireJavaScritCall(item)}"/>
+                                        </a>
+
+                                        <h:panelGrid columns="1" width="700">
+                                            <h:outputLink value="#{item.author.webSite}" style="width: 500">
+                                                <h:outputText value="#{item.author.name}"/>
+                                            </h:outputLink>                                                                                    
+                                        </h:panelGrid>
+
+                                        <h:panelGrid columns="3" width="700" style="vertical-align: top">
+
+                                            <a href="http://twitter.com/share" 
+                                               class="twitter-share-button" 
+                                               data-url="#{item.stripUrl}" 
+                                               data-via="lastirasbr"
+                                               data-count="horizontal" >Tweet</a>
+
+                                            <g:plusone width="55" height="20" href="#{item.stripUrl}"></g:plusone>
+
+
+                                            <iframe src="#{item.acquireFaceBookUrl()}" scrolling="no" frameborder="0" 
+                                                    style="border:none; overflow:hidden; width:450px; height:21px;" 
+                                                    allowTransparency="true"></iframe>
+
+
+                                        </h:panelGrid>
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
+                                    </h:panelGrid>                                
+                                </h:column>                            
+                            </h:dataTable>
+
+                            <h:panelGrid id="datePanelGripTwo" style="width: 700px; text-align: center; font-size: 21px; color: #000000;" columns="3" width="700">
+                                <h:link style="width: 25px; text-align: center; font-size: 21px; color: #000000;" outcome="index.xhtml">
+                                    <img width="40px" src="resources/images/left.png"></img>
+                                    <f:param name="q" value="#{lasTirasList.counter-1}"/>
+                                </h:link>
+                                <h:outputText id="currentDateTwo" style="width: 233px; font-family: 'arial'; text-align: center; font-size: 25px; color: #4075A6; font-weight: bolder" value="#{lasTirasList.acquireStripDate()}" />
+                                <h:link style="width: 25px; text-align: center; font-size: 21px; color: #000000;" outcome="index.xhtml">
+                                    <img width="40px" src="resources/images/right.png"></img>
+                                    <f:param name="q" value="#{lasTirasList.counter+1}"/>
+                                </h:link>
+                            </h:panelGrid>
+                            <hr></hr>
+                            <br></br>
+                        </h:panelGrid>
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+     <h:head>
+        <title>Las Tiras</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="commons/template.xhtml">    
+            <ui:define name="content">
+                <f:view>
+                <h:form>
+                    <h:dataTable  style="width: 700px; text-align: center;" value="#{authorList.acquireAllAuthors()}" var="item">
+                        <h:column>
+                            <h:panelGrid  style="width: 700px; text-align: center;" columns="1">
+                                <a href="#{item.webSite}">
+                                    <img width="350" src="#{item.imageUrl}"/>
+                                </a>
+                            </h:panelGrid>
+                        </h:column>
+                    </h:dataTable>
+                    <hr></hr>
+                    <br></br>
+                </h:form>
+            </f:view>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                
+                <h:panelGrid style="width: 700px" columns="2">
+                
+                    <h:panelGrid style="width: 680px">
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <a href="http://www.kmtech.com.br:8080/LasTirasRss-web/rss.jsp" >
+                            <img src="../resources/images/rss.png"  style="width: 20px"></img>
+                        </a> 
+                    </h:panelGrid>
+                    
+                </h:panelGrid>
+                
+                <h:panelGrid columns="3" width="700">
+                    <h:panelGrid columns="1" style="width: 233px" >
+                        <img src="../resources/images/las-tiras-logo.jpg" width="160" height="120" alt="Las Tiras!!!"></img>
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="1" style="width: 233px; text-align: center">
+                        <h:commandLink action="#{lasTirasList.toLasTiras()}" 
+                                       immediate="true" style="color: #4075A6; font-size: 20px; text-align: center">
+                            <img src="../resources/images/larDoceLarOff.png" 
+                                 onmouseover="this.src='../resources/images/larDoceLarOn.png'" 
+                                 onmouseout="this.src='../resources/images/larDoceLarOff.png'" 
+                                 width="130"></img>
+                        </h:commandLink>
+
+                        <h:commandLink action="#{lasTirasList.toAuthors()}" 
+                                       immediate="true" style="color: #4075A6; font-size: 20px; text-align: center">
+                            <img src="../resources/images/autoresOff.png" 
+                                 onmouseover="this.src='../resources/images/autoresOn.png'" 
+                                 onmouseout="this.src='../resources/images/autoresOff.png'"
+                                 width="100"></img>
+                        </h:commandLink>
+
+                        <h:commandLink action="#{lasTirasList.toContacts()}" 
+                                       immediate="true" style="color: #4075A6; font-size: 20px; text-align: center">
+                            <img src="../resources/images/contatoOff.png" 
+                                 onmouseover="this.src='../resources/images/contatoOn.png'" 
+                                 onmouseout="this.src='../resources/images/contatoOff.png'"
+                                 width="100"></img>
+                        </h:commandLink>                            
+
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="1" id="panelSubscribe" style="width: 233px; text-align: center;">
+                        <img src="../resources/images/recebaPorEmailOff.png" width="150"></img>
+                        <h:inputText size="19"  id="subscribe" value="#{lasTirasList.email}" validatorMessage="Email inválido">
+                            <f:validateRegex for="subscribe" pattern="^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$">
+
+                            </f:validateRegex>
+                        </h:inputText>
+                        <h:panelGrid columns="1" style="text-align: center; width: 233px" >
+                            <h:outputText style="color: black; text-align: center; font-size: 10px; font-family: 'arial';" value="#{lasTirasList.message}" rendered="#{lasTirasList.hasMessage()}"/>
+                            <h:message for="subscribe" style="color:red; text-align: center; font-size: 10px; font-family: 'arial';"/>
+                        </h:panelGrid>
+                        <h:commandButton value="Cadastrar/Descadastrar" action="#{lasTirasList.saveEmail()}"/>
+                    </h:panelGrid>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+        <hr></hr>
+    </h:body>
+</html>
+
