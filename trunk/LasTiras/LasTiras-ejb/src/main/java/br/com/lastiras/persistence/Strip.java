@@ -55,6 +55,24 @@ public class Strip implements Serializable {
         this.stripUrl = stripUrl;
     }
     
+    private String modifyTweeterUrl(String url){
+        String doisPontos = "%3A";
+        String interrogacao = "%3F";
+        String igual = "%3D";
+        String eComercial = "&amp;";
+        String barra = "%2F";
+        String mais = "%2B";
+        
+        url = url.replaceAll(":", doisPontos);
+        url = url.replaceAll("/", barra);
+        //url = url.replaceAll("?", interrogacao);
+        //url = url.replaceAll("=", igual);
+        url = url.replaceAll("&", eComercial);
+        //url = url.replaceAll("+", mais);
+        
+        return url;
+    }
+    
     private String modifyUrl(String url){
         String doisPontos = "%3A";
         String interrogacao = "%3F";
@@ -73,14 +91,49 @@ public class Strip implements Serializable {
         return url;
     }
     
-    public String acquireFaceBookUrl(){
-        String startFace = "http://www.facebook.com/plugins/like.php?href=";
-        String endFace = "&amp;layout=button_count&amp;show_faces=false&amp;action=recommended&amp;colorscheme=light&amp;width=100&amp;height=21&amp;font=&amp;locale=pt_BR";
-        return startFace+modifyUrl(stripUrl)+endFace;
+    public String acquireGooglePlusSrc(){
+        String start=
+                "https://plusone.google.com/u/0/_/+1/fastbutton?"+
+                "url="+modifyUrl(stripUrl)+                
+                "&amp;size=standard"+
+                "&amp;count=true"+
+                "&amp;annotation="+
+                "&amp;hl=pt-BR"+
+                "&amp;parent=http%3A%2F%2Fwww.lastiras.com"+
+                "&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe";
+        return start;
     }
     
-    public String acquireTwitterUrl(){
-        return modifyUrl(stripUrl);
+    public String acquireTweeterSrc(){
+        String start=
+                "http://platform.twitter.com/widgets/tweet_button.html#"
+                + "&amp;count=horizontal"
+                + "&amp;id=twitter_tweet_button_14"
+                + "&amp;lang=en"
+                + "&amp;original_referer=http%3A%2F%2Fwww.lastiras.com"
+                + "&amp;text=" + modifyUrl(stripUrl)
+                + "&amp;url=" + modifyUrl(stripUrl)
+                + "&amp;via=lastirasbr";
+        return start;
+    }
+    
+     public String acquireTweeterUrl(){
+        String start= modifyUrl(stripUrl);
+        return start;
+    }
+    
+    public String acquireFacebookSrc(){
+        String start = "http://www.facebook.com/plugins/like.php?"
+                + "href=" + modifyUrl(stripUrl)
+                + "&amp;layout=button_count"
+                + "&amp;show_faces=false"
+                + "&amp;action=recommended"
+                + "&amp;colorscheme=light"
+                + "&amp;width=100"
+                + "&amp;height=21"
+                + "&amp;font="
+                + "&amp;locale=pt_BR";
+        return start;
     }
     
     public String acquireId(){
