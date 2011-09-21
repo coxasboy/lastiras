@@ -5,7 +5,7 @@
       xmlns:g="http://base.google.com/ns/1.0"
       xmlns:fb="http://www.facebook.com/2008/fbml">
     <f:metadata>
-        <f:viewParam name="q" value="#{lasTirasList.counter}"/>
+        <f:viewParam name="q" value="#{lasTirasList.currentDate}"/>
     </f:metadata>
     <h:head>
         <title>Las Tiras</title>        
@@ -21,12 +21,12 @@
                             <h:panelGrid id="datePanelGripOne" style="width: 700px; text-align: center; font-size: 21px; color: #000000;" columns="3" width="700">
                                 <h:link style="width: 25px; text-align: center; font-size: 21px; color: #000000;" outcome="index.xhtml">
                                     <img width="40px" src="resources/images/left.png"></img>
-                                    <f:param name="q" value="#{lasTirasList.counter-1}"/>
+                                    <f:param name="q" value="#{lasTirasList.lastDate}"/>
                                 </h:link>
                                 <h:outputText id="currentDateOne" style="width: 233px; font-family: 'arial'; text-align: center; font-size: 25px; color: #4075A6; font-weight: bolder" value="#{lasTirasList.acquireStripDate()}" />
                                 <h:link style="width: 25px; text-align: center; font-size: 21px; color: #000000;" outcome="index.xhtml">
                                     <img width="40px" src="resources/images/right.png"></img>
-                                    <f:param name="q" value="#{lasTirasList.counter+1}"/>
+                                    <f:param name="q" value="#{lasTirasList.nextDate}"/>
                                 </h:link>
                             </h:panelGrid>
 
@@ -97,12 +97,12 @@
                             <h:panelGrid id="datePanelGripTwo" style="width: 700px; text-align: center; font-size: 21px; color: #000000;" columns="3" width="700">
                                 <h:link style="width: 25px; text-align: center; font-size: 21px; color: #000000;" outcome="index.xhtml">
                                     <img width="40px" src="resources/images/left.png"></img>
-                                    <f:param name="q" value="#{lasTirasList.counter-1}"/>
+                                    <f:param name="q" value="#{lasTirasList.lastDate}"/>
                                 </h:link>
                                 <h:outputText id="currentDateTwo" style="width: 233px; font-family: 'arial'; text-align: center; font-size: 25px; color: #4075A6; font-weight: bolder" value="#{lasTirasList.acquireStripDate()}" />
                                 <h:link style="width: 25px; text-align: center; font-size: 21px; color: #000000;" outcome="index.xhtml">
                                     <img width="40px" src="resources/images/right.png"></img>
-                                    <f:param name="q" value="#{lasTirasList.counter+1}"/>
+                                    <f:param name="q" value="#{lasTirasList.nextDate}"/>
                                 </h:link>
                             </h:panelGrid>
                             <hr></hr>

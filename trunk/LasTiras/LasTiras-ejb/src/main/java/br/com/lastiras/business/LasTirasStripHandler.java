@@ -30,9 +30,18 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
     
     @EJB
     private LasTirasStripDaoLocal lasTirasDao;
-       
-    public int getMaxLow(){
-        return lasTirasDao.getLasTirasOldierThenThis(new Date()).size();
+    
+    @Override
+    public LasTirasStrip getOlderLasTiras(){
+        return lasTirasDao.getLastLasTiras();
+    }
+    
+    @Override
+    public List<LasTirasStrip> getLasTirasEqualOrOldierThenThis(Date date){
+        logger.log(Level.INFO,"Getting las tiras oldier then: " + date);
+        List<LasTirasStrip> strip = lasTirasDao.getLasTirasEqualOrOldierThenThis(date);
+        logger.log(Level.INFO,"Retrieve: " + strip.size());
+        return strip;
     }
     
     @Override
@@ -90,6 +99,21 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
             logger.log(Level.SEVERE, "Erro pegando tira de hoje",e);
             return null;
         }
+    }
+    
+    @Override
+    public br.com.lastiras.persistence.LasTirasStrip getIndexLasTiras(Date date){
+        List<LasTirasStrip> strips = getLasTirasEqualOrOldierThenThis(date);
+        if(strips==null || strips.size()==0){
+            strips = getLasTirasNewerThenThis(date);
+            if(strips==null || strips.size()==0){
+                return null;
+            }
+            else{
+                return strips.get(0);    
+            }
+        }
+        return strips.get(0);    
     }
     
     public LasTirasStrip getIndexLasTiras(int counter){

@@ -17,5 +17,9 @@ public interface LasTirasStripDaoLocal extends GenericDao<LasTirasStrip, Long> {
     public java.util.List<br.com.lastiras.persistence.LasTirasStrip> getLasTirasOldierThenThis(java.util.Date date);
 
     public java.util.List<br.com.lastiras.persistence.LasTirasStrip> getLasTirasNewerThenThis(java.util.Date date);
+
+    public java.util.List<br.com.lastiras.persistence.LasTirasStrip> getLasTirasEqualOrOldierThenThis(java.util.Date date);
+    
+    public br.com.lastiras.persistence.LasTirasStrip getLastLasTiras();
     
 }

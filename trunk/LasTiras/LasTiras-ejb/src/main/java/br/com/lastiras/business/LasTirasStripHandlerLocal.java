@@ -29,6 +29,10 @@ public interface LasTirasStripHandlerLocal {
 
     public br.com.lastiras.persistence.LasTirasStrip getIndexLasTiras(int counter);
 
-    public int getMaxLow();
+    public java.util.List<br.com.lastiras.persistence.LasTirasStrip> getLasTirasEqualOrOldierThenThis(java.util.Date date);
+
+    public br.com.lastiras.persistence.LasTirasStrip getIndexLasTiras(java.util.Date date);
+
+    public br.com.lastiras.persistence.LasTirasStrip getOlderLasTiras();
     
 }

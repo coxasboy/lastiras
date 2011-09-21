@@ -7,25 +7,15 @@
     <h:body>
         <f:view>
             <h:form>
-                
-                <h:panelGrid style="width: 700px" columns="2">
-                
-                    <h:panelGrid style="width: 680px">
-                    </h:panelGrid>
-                    <h:panelGrid>
-                        <a href="http://www.kmtech.com.br:8080/LasTirasRss-web/rss.jsp" >
-                            <img src="../resources/images/rss.png"  style="width: 20px"></img>
-                        </a> 
-                    </h:panelGrid>
-                    
-                </h:panelGrid>
-                
-                <h:panelGrid columns="3" width="700">
-                    <h:panelGrid columns="1" style="width: 233px" >
-                        <img src="../resources/images/las-tiras-logo.jpg" width="160" height="120" alt="Las Tiras!!!"></img>
+
+                <h:panelGrid columns="4" width="700">
+                    <h:panelGrid columns="1" style="width: 140px" >
+                        <a href="#{lasTirasList.getLasTirasLink()}">
+                            <img src="../resources/images/las-tiras-logo.jpg" width="160" height="120" alt="Las Tiras!!!" title="LAS TIRAS"></img>
+                        </a>                        
                     </h:panelGrid>
 
-                    <h:panelGrid columns="1" style="width: 233px; text-align: center">
+                    <h:panelGrid columns="1" style="width: 150px; text-align: center">
                         <h:commandLink action="#{lasTirasList.toLasTiras()}" 
                                        immediate="true" style="color: #4075A6; font-size: 20px; text-align: center">
                             <img src="../resources/images/larDoceLarOff.png" 
@@ -52,20 +42,60 @@
 
                     </h:panelGrid>
 
-                    <h:panelGrid columns="1" id="panelSubscribe" style="width: 233px; text-align: center;">
+                    <h:panelGrid columns="1" id="panelSubscribe" style="width: 175px; text-align: center;">
                         <img src="../resources/images/recebaPorEmailOff.png" width="150"></img>
                         <h:inputText size="19"  id="subscribe" value="#{lasTirasList.email}" validatorMessage="Email inválido">
                             <f:validateRegex for="subscribe" pattern="^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$">
 
                             </f:validateRegex>
                         </h:inputText>
-                        <h:panelGrid columns="1" style="text-align: center; width: 233px" >
+                        <h:panelGrid columns="1" style="text-align: center; width: 175px" >
                             <h:outputText style="color: black; text-align: center; font-size: 10px; font-family: 'arial';" value="#{lasTirasList.message}" rendered="#{lasTirasList.hasMessage()}"/>
                             <h:message for="subscribe" style="color:red; text-align: center; font-size: 10px; font-family: 'arial';"/>
                         </h:panelGrid>
                         <h:commandButton value="Cadastrar/Descadastrar" action="#{lasTirasList.saveEmail()}"/>
+                        
+                    </h:panelGrid>   
+                   
+                    <h:panelGrid columns="1" width="175" bgcolor="#96C2DF">
+                        <h:panelGrid columns="2" width="90" style="color: orange; text-align: left; font-family: arial; font-weight: bolder; font-size: 10">
+                            <a href="http://www.kmtech.com.br:8080/LasTirasRss-web/rss.jsp" style="width: 20px;">
+                                <img src="../resources/images/rss.png"  style="width: 20px"></img>
+                            </a> 
+                            <h:outputText value="RSS" style="color: orange; text-align: left; font-family: arial; font-weight: bolder; font-size: 15px"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="1" width="100">
+                            <a href="https://twitter.com/lastirasbr" style="width: 100px;" class="twitter-follow-button" data-show-count="false" data-lang="pt" data-width="175px">Siga @lastirasbr</a>                    
+                        </h:panelGrid>
+                        <iframe 
+                            src="#{lasTirasList.getFacebookSrc()}" 
+                            scrolling="no" 
+                            frameborder="0" 
+                            class="fb_ltr" 
+                            style="
+                                border-width: initial; 
+                                border-color: initial; 
+                                overflow-x: hidden; 
+                                overflow-y: hidden; 
+                                width: 175px; 
+                                border-width: initial; 
+                                border-color: initial; 
+                                height: 29px; 
+                                border-top-style: none; 
+                                border-right-style: none; 
+                                border-bottom-style: none; 
+                                border-left-style: none; 
+                                border-width: initial; 
+                                border-color: initial;" 
+                            allowtransparency="true">
+                        </iframe>
                     </h:panelGrid>
+                    
+                     
+                    
+
                 </h:panelGrid>
+
             </h:form>
         </f:view>
         <hr></hr>
