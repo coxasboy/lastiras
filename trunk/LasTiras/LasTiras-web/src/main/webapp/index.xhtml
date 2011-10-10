@@ -32,65 +32,67 @@
 
                             <h:dataTable style="width: 700px; text-align: center;" value="#{lasTirasList.currentStripe.strips}" var="item">
                                 <h:column>
-                                    <h:panelGrid columns="1" style="width: 700px; text-align: center;">
+                                    <div id="#{lasTirasList.getDivId(item.id)}">
+                                        <h:panelGrid columns="1" style="width: 700px; text-align: center;">
 
-                                        <a href="#{item.stripUrl}">
-                                            <img id="#{lasTirasList.acquireId(item)}" style="max-width: 700px;" src="resources/images/ajax-loader.gif" onload="#{lasTirasList.acquireJavaScritCall(item)}"/>
-                                        </a>
+                                            <a href="#{item.stripUrl}">
+                                                <img id="#{lasTirasList.acquireId(item)}" style="max-width: 700px;" src="resources/images/ajax-loader.gif" onload="#{lasTirasList.acquireJavaScritCall(item)}"/>
+                                            </a>
 
-                                        <h:panelGrid columns="1" width="700">
-                                            <h:outputLink value="#{item.author.webSite}" style="width: 500">
-                                                <h:outputText value="#{item.author.name}"/>
-                                            </h:outputLink>                                                                                    
-                                        </h:panelGrid>
+                                            <h:panelGrid columns="1" width="700">
+                                                <h:outputLink value="#{item.author.webSite}" style="width: 500">
+                                                    <h:outputText value="#{item.author.name}"/>
+                                                </h:outputLink>                                                                                    
+                                            </h:panelGrid>
 
-                                        <h:panelGrid columns="3" width="700">
+                                            <h:panelGrid columns="3" width="700">
 
-                                            <div class="share-toolbar">
-                                                <ul class="share-bar">
-                                                    <li class="google1"><div style="height: 24px; width: 106px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; ">
-                                                            <iframe 
-                                                                allowtransparency="true" 
-                                                                frameborder="0" 
-                                                                hspace="0" 
-                                                                marginheight="0" 
-                                                                marginwidth="0" 
-                                                                scrolling="no" 
-                                                                src="#{item.acquireGooglePlusSrc()}" 
-                                                                style="width: 106px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 24px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="-1" vspace="0" width="100%" title="+1">
-                                                            </iframe></div></li>
-                                                    <li class="tweet">
-                                                        <div>
-                                                            <a href="https://twitter.com/share" 
-                                                                class="twitter-share-button" 
-                                                                data-url="#{item.stripUrl}" 
-                                                                data-count="horizontal" 
-                                                                data-via="lastirasbr"
-                                                                original_referer="#{item.stripUrl}"
-                                                                >Tweet</a>
-                                                            
-                                                        </div></li>
-                                                    <li class="facebook">
-                                                        <div id="fb-root">
-                                                        </div>       
-                                                        <span>
-                                                            <iframe 
-                                                                src="#{item.acquireFacebookSrc()}" 
-                                                                scrolling="no" 
-                                                                frameborder="0"
-                                                                class="fb_ltr"
-                                                                style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; width: 450px; border-width: initial; border-color: initial; height: 29px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial;"
-                                                                allowTransparency="true">
-                                                            </iframe>
-                                                        </span>
-                                                    </li>
-                                                </ul><br/>
-                                            </div>
-                                        </h:panelGrid>
-                                        <br></br>
-                                        <br></br>
-                                        <br></br>
-                                    </h:panelGrid>                                
+                                                <div class="share-toolbar">
+                                                    <ul class="share-bar">
+                                                        <li class="google1"><div style="height: 24px; width: 106px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; ">
+                                                                <iframe 
+                                                                    allowtransparency="true" 
+                                                                    frameborder="0" 
+                                                                    hspace="0" 
+                                                                    marginheight="0" 
+                                                                    marginwidth="0" 
+                                                                    scrolling="no" 
+                                                                    src="#{lasTirasList.acquireGooglePlusSrc(item.stripUrl)}" 
+                                                                    style="width: 106px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 24px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="-1" vspace="0" width="100%" title="+1">
+                                                                </iframe></div></li>
+                                                        <li class="tweet">
+                                                            <div>
+                                                                <a href="https://twitter.com/share" 
+                                                                   class="twitter-share-button" 
+                                                                   data-url="#{lasTirasList.getCurrentStripeUrl(item.id)}" 
+                                                                   data-count="horizontal" 
+                                                                   data-via="lastirasbr"
+                                                                   data-text="#{item.author.acquireNameWithHifen()}"
+                                                                   original_referer="#{lasTirasList.getCurrentStripeUrl(item.id)}"
+                                                                   >Tweet</a>
+                                                            </div></li>
+                                                        <li class="facebook">
+                                                            <div id="fb-root">
+                                                            </div>       
+                                                            <span>
+                                                                <iframe 
+                                                                    src="#{lasTirasList.acquireFacebookSrc(item.id)}" 
+                                                                    scrolling="no" 
+                                                                    frameborder="0"
+                                                                    class="fb_ltr"
+                                                                    style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; width: 450px; border-width: initial; border-color: initial; height: 29px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial;"
+                                                                    allowTransparency="true">
+                                                                </iframe>
+                                                            </span>
+                                                        </li>
+                                                    </ul><br/>
+                                                </div>
+                                            </h:panelGrid>
+                                            <br></br>
+                                            <br></br>
+                                            <br></br>
+                                        </h:panelGrid>    
+                                    </div>
                                 </h:column>                            
                             </h:dataTable>
 

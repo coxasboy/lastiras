@@ -30,6 +30,10 @@ public class Author implements Serializable {
     
     @Column(name="imageurl",length=1024)
     private String imageUrl;
+    
+    public String acquireNameWithHifen(){
+        return name + " - ";
+    }
 
     public Long getId() {
         return id;

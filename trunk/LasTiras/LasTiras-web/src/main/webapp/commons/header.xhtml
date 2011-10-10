@@ -11,7 +11,7 @@
                 <h:panelGrid columns="4" width="700">
                     <h:panelGrid columns="1" style="width: 140px" >
                         <a href="#{lasTirasList.getLasTirasLink()}">
-                            <img src="../resources/images/las-tiras-logo.jpg" width="160" height="120" alt="Las Tiras!!!" title="LAS TIRAS"></img>
+                            <img src="../resources/images/las-tiras-crianca.gif" width="160" height="120" alt="Las Tiras!!!" title="Las Tiras Niñas"></img>
                         </a>                        
                     </h:panelGrid>
 
@@ -57,7 +57,7 @@
                         
                     </h:panelGrid>   
                    
-                    <h:panelGrid columns="1" width="175" bgcolor="#96C2DF">
+                    <h:panelGrid columns="1" width="175" style="background-image:  url('../resources/images/backgroundLasTiras.png');">
                         <h:panelGrid columns="2" width="90" style="color: orange; text-align: left; font-family: arial; font-weight: bolder; font-size: 10">
                             <a href="http://www.kmtech.com.br:8080/LasTirasRss-web/rss.jsp" style="width: 20px;">
                                 <img src="../resources/images/rss.png"  style="width: 20px"></img>
@@ -67,6 +67,14 @@
                         <h:panelGrid columns="1" width="100">
                             <a href="https://twitter.com/lastirasbr" style="width: 100px;" class="twitter-follow-button" data-show-count="false" data-lang="pt" data-width="175px">Siga @lastirasbr</a>                    
                         </h:panelGrid>
+                        <!-- div 
+                            class="fb-like-box"
+                            data-href="http://www.facebook.com/pages/Las-Tiras/257280717636317" 
+                            data-width="175" 
+                            data-show-faces="false" 
+                            data-stream="false" 
+                            data-header="true"></div -->
+                        
                         <iframe 
                             src="#{lasTirasList.getFacebookSrc()}" 
                             scrolling="no" 
@@ -89,6 +97,7 @@
                                 border-color: initial;" 
                             allowtransparency="true">
                         </iframe>
+                        
                     </h:panelGrid>
                     
                      

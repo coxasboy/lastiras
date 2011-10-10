@@ -61,7 +61,7 @@ public class LasTirasList {
     
     public String getFacebookSrc(){
         String src = "http://www.facebook.com/plugins/like.php?"
-                + "href= http%3A%2F%2Fwww.kmtech.com.br%3A8080%2FLasTiras-web%2Ffaces%2Findex.xhtml?q="+getCurrentFormattedDate()
+                + "href= http%3A%2F%2Fwww.kmtech.com.br%3A8080%2FLasTiras-web%2Ffaces%2Findex.xhtml"
                 + "&amp;layout=button_count"
                 + "&amp;show_faces=false"
                 + "&amp;action=recommended"
@@ -198,6 +198,17 @@ public class LasTirasList {
             this.message = this.emailHandler.digestEmail(email);
         }
     }
+    
+    public String getCurrentStripeUrl(long id){
+        //20110823#IamDivNumber812
+        LasTirasStrip lasStrip = getCurrentStripe();
+        StringBuilder sb = new StringBuilder();
+        sb.append("http://www.kmtech.com.br:8080/LasTiras-web/faces/index.xhtml?q=");
+        sb.append(sdfReqParameter.format(lasStrip.getStripDate()));
+        sb.append("#");
+        sb.append(getDivId(id));
+        return sb.toString();
+    }
 
     public String acquireStripDate() {
         Date date = this.getCurrentStripe().getStripDate();
@@ -232,5 +243,84 @@ public class LasTirasList {
     public String toContacts() {
         cleanPage();
         return "contato.xhtml";
+    }
+    
+   /*------------------------------------*/
+    
+    private String modifyUrl(String url){
+        String doisPontos = "%3A";
+        String interrogacao = "%3F";
+        String igual = "%3D";
+        String eComercial = "%26";
+        String barra = "%2F";
+        String mais = "%2B";
+        String cerquilho = "%23";
+        
+        url = url.replaceAll(":", doisPontos);
+        url = url.replaceAll("/", barra);
+        url = url.replaceAll("#", cerquilho);
+        //url = url.replaceAll("?", interrogacao);
+        //url = url.replaceAll("=", igual);
+        //url = url.replaceAll("&", eComercial);
+        //url = url.replaceAll("+", mais);
+        
+        return url;
+    }
+        
+    public String acquireGooglePlusSrc(String stripUrl){
+        String start=
+                "https://plusone.google.com/u/0/_/+1/fastbutton?"+
+                "url="+modifyUrl(stripUrl)+                
+                "&amp;size=standard"+
+                "&amp;count=true"+
+                "&amp;annotation="+
+                "&amp;hl=pt-BR"+
+                "&amp;parent=http%3A%2F%2Fwww.lastiras.com"+
+                "&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe";
+        return start;
+    }
+    
+    public String acquireTweeterSrc(long id){
+        String start=
+                "http://platform.twitter.com/widgets/tweet_button.html#"
+                + "&amp;count=horizontal"
+                + "&amp;id=twitter_tweet_button_14"
+                + "&amp;lang=en"
+                + "&amp;original_referer=http%3A%2F%2Fwww.lastiras.com"
+                + "&amp;text=" + getCurrentStripeUrl(id)
+                + "&amp;url=" + getCurrentStripeUrl(id)
+                + "&amp;via=lastirasbr";
+        return start;
+    }
+    
+     public String acquireTweeterUrl(String stripUrl){
+        String start= modifyUrl(stripUrl);
+        return start;
+    }
+    
+    public String acquireFacebookSrc(long id){
+        String start = "http://www.facebook.com/plugins/like.php?"
+                + "href=" + modifyUrl(getCurrentStripeUrl(id))
+                + "&amp;layout=button_count"
+                + "&amp;show_faces=false"
+                + "&amp;action=recommended"
+                + "&amp;colorscheme=light"
+                + "&amp;width=100"
+                + "&amp;height=21"
+                + "&amp;font="
+                + "&amp;locale=pt_BR";
+        return start;
+    }
+    
+//    public String acquireId(long id){
+//        return "stripId"+id;
+//    }
+//    
+//    public String acquireJavaScript(long id, String stripUrl){
+//        return "changeWidth('" + acquireId(id) + "',700,'" + stripUrl +"')";
+//    }
+    
+    public String getDivId(long id){
+        return "IamDivNumber"+id;
     }
 }
