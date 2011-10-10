@@ -18,6 +18,11 @@ div.page{
 
 }
 
+.profileimage {
+    width: 0px;
+    height: 0px;
+}
+
 #panelSubscribe{
     font-size: 10px;
     font-weight: lighter;
