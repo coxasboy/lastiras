@@ -63,6 +63,7 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
     @Override
     public LasTirasStrip createLasTirasStrip(int day, int month, int year, Strip ... strips){
         try{
+            logger.info("Creating lastirasstrip: " + day+"/"+month+"/"+year);
             Date stripDate = sdf.parse(day+"/"+month+"/"+year);
             LasTirasStrip strip = new LasTirasStrip();
             strip.setStripDate(stripDate);
