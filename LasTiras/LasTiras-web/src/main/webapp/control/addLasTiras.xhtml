@@ -11,7 +11,7 @@
         <f:view>
             <h:form>
                 <table border="0" width="1" cellspacing="10" cellpadding="2">
-                    <tbody>
+                    
                         <tr>
                             <td><h:outputText value="Data:"/></td>
                             <td>
@@ -81,10 +81,12 @@
                             </td>
                         </tr>                         
                         <tr>
-                            <th><input type="submit" value="Salvar" onclick="#{lasTirasStripesCreator.saveStrip()}"/></th>
+                            <th>
+                                <h:commandButton value="Salvar" onclick="#{lasTirasStripesCreator.saveStrip()}"/> 
+                            </th>
                             <th></th>
                         </tr>
-                    </tbody>
+                    
                 </table>
 
                 
