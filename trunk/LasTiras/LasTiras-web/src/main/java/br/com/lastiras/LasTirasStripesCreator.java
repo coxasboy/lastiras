@@ -11,55 +11,48 @@ import br.com.lastiras.persistence.Author;
 import br.com.lastiras.persistence.LasTirasStrip;
 import br.com.lastiras.persistence.Strip;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author matheus
  */
-@ManagedBean(name="lasTirasStripesCreator")
-@RequestScoped
+@ManagedBean(name = "lasTirasStripesCreator")
+@SessionScoped
 public class LasTirasStripesCreator {
 
     @EJB
     private LasTirasStripHandlerLocal stripLasTirashandler;
-    
     @EJB
     private AuthorHandlerLocal authorhandler;
-    
     @EJB
     private StripHandlerLocal stripHandler;
-    
+    private final Logger logger = Logger.getLogger(LasTirasStripesCreator.class.getSimpleName());
     
     private int day;
     private int month;
     private int year;
-    
     private int authorIdOne;
-    private String stripeUrlOne;
-    
+    private String stripeUrlOne="";
     private int authorIdTwo;
-    private String stripeUrlTwo;
-    
+    private String stripeUrlTwo="";
     private int authorIdThree;
-    private String stripeUrlThree;
-    
+    private String stripeUrlThree="";
     private int authorIdFour;
-    private String stripeUrlFour;
-    
+    private String stripeUrlFour="";
     private int authorIdFive;
-    private String stripeUrlFive;
-    
+    private String stripeUrlFive="";
     private int authorIdSix;
-    private String stripeUrlSix;
-       
-    
+    private String stripeUrlSix="";
+
     public LasTirasStripesCreator() {
     }
-    
-    public List<Author> getAuthors(){
+
+    public List<Author> getAuthors() {
         return authorhandler.getAll();
     }
 
@@ -182,33 +175,40 @@ public class LasTirasStripesCreator {
     public void setYear(int year) {
         this.year = year;
     }
-    
-    public void saveStrip(){
-       Strip [] strips = new Strip[6];
+
+    public void saveStrip() {
        
-        if(stripeUrlOne!=null && stripeUrlOne.length()>0){
+        Strip[] strips = new Strip[6];
+
+        logger.log(Level.INFO, "Creating strip...");
+
+        if (stripeUrlOne != null && stripeUrlOne.length() > 0) {
+            logger.log(Level.INFO, "Strip one: " + stripeUrlOne);
             strips[0] = (stripHandler.createStrip(authorIdOne, stripeUrlOne));
         }
-        if(stripeUrlTwo!=null && stripeUrlTwo.length()>0){
+        if (stripeUrlTwo != null && stripeUrlTwo.length() > 0) {
+            logger.log(Level.INFO, "Strip two: " + stripeUrlTwo);
             strips[1] = (stripHandler.createStrip(authorIdTwo, stripeUrlTwo));
         }
-        if(stripeUrlThree!=null && stripeUrlThree.length()>0){
+        if (stripeUrlThree != null && stripeUrlThree.length() > 0) {
+            logger.log(Level.INFO, "Strip three: " + stripeUrlThree);
             strips[2] = (stripHandler.createStrip(authorIdThree, stripeUrlThree));
         }
-        if(stripeUrlFour!=null && stripeUrlFour.length()>0){
+        if (stripeUrlFour != null && stripeUrlFour.length() > 0) {
+            logger.log(Level.INFO, "Strip four: " + stripeUrlFour);
             strips[3] = (stripHandler.createStrip(authorIdFour, stripeUrlFour));
         }
-        if(stripeUrlFive!=null && stripeUrlFive.length()>0){
+        if (stripeUrlFive != null && stripeUrlFive.length() > 0) {
+            logger.log(Level.INFO, "Strip five: " + stripeUrlFive);
             strips[4] = (stripHandler.createStrip(authorIdFive, stripeUrlFive));
         }
-        if(stripeUrlSix!=null && stripeUrlSix.length()>0){
+        if (stripeUrlSix != null && stripeUrlSix.length() > 0) {
+            logger.log(Level.INFO, "Strip six: " + stripeUrlSix);
             strips[5] = (stripHandler.createStrip(authorIdSix, stripeUrlSix));
         }
-        
+
         LasTirasStrip strip = stripLasTirashandler.createLasTirasStrip(day, month, year, strips);
-        
-       
+
+
     }
-    
-    
 }
