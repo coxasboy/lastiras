@@ -56,12 +56,12 @@ public class LasTirasList {
     }
     
     public String getLasTirasLink(){
-        return "http://www.kmtech.com.br:8080/LasTiras-web/faces/index.xhtml?q="+getCurrentFormattedDate();
+        return "http://ps71499.dreamhost.com:80/LasTiras-web/faces/index.xhtml?q="+getCurrentFormattedDate();
     }
     
     public String getFacebookSrc(){
-        String src = "http://www.facebook.com/plugins/like.php?"
-                + "href= http%3A%2F%2Fwww.kmtech.com.br%3A8080%2FLasTiras-web%2Ffaces%2Findex.xhtml"
+        String src = "http://www.facebook.com/plugins/like.php?"                
+                + "href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FLas-Tiras%2F257280717636317"
                 + "&amp;layout=button_count"
                 + "&amp;show_faces=false"
                 + "&amp;action=recommended"
@@ -203,7 +203,7 @@ public class LasTirasList {
         //20110823#IamDivNumber812
         LasTirasStrip lasStrip = getCurrentStripe();
         StringBuilder sb = new StringBuilder();
-        sb.append("http://www.kmtech.com.br:8080/LasTiras-web/faces/index.xhtml?q=");
+        sb.append("http://ps71499.dreamhost.com:80/LasTiras-web/faces/index.xhtml?q=");
         sb.append(sdfReqParameter.format(lasStrip.getStripDate()));
         sb.append("#");
         sb.append(getDivId(id));
