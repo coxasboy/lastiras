@@ -103,28 +103,6 @@ public class LasTirasList {
         return sdfReqParameter.format(dayBefore);
     }
 
-//    public int getCounter() {
-//        return counter;
-//    }
-//    
-//    public void setCounter(int counter) {
-//        
-//        if(counter>=0){
-//            if(counter==1){
-//                tryToGo2morrow = true;
-//            }
-//            this.counter = 0;
-//        }
-//        else{
-//            int maxCount = this.lasTirasHandler.getMaxLow();
-//            if((counter)<-maxCount){
-//                this.counter = -maxCount;
-//            }
-//            else{
-//                this.counter = counter;                
-//            }
-//        }
-//    }
     private String getPageParameter() {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         return req.getParameter("q");
@@ -203,10 +181,10 @@ public class LasTirasList {
         //20110823#IamDivNumber812
         LasTirasStrip lasStrip = getCurrentStripe();
         StringBuilder sb = new StringBuilder();
-        sb.append("http://ps71499.dreamhost.com:80/LasTiras-web/faces/index.xhtml?q=");
+        sb.append("http://ps71499.dreamhost.com:80/LasTiras-web/faces/strip.xhtml?q=");
         sb.append(sdfReqParameter.format(lasStrip.getStripDate()));
-        sb.append("#");
-        sb.append(getDivId(id));
+        sb.append("%26i=");
+        sb.append(getIndexId(id,lasStrip));
         return sb.toString();
     }
 
@@ -319,6 +297,19 @@ public class LasTirasList {
 //    public String acquireJavaScript(long id, String stripUrl){
 //        return "changeWidth('" + acquireId(id) + "',700,'" + stripUrl +"')";
 //    }
+    
+    public long getIndexId(long id, LasTirasStrip lasTirasStrip){
+        List<Strip> strips = lasTirasStrip.getStrips();
+        int cont = 0;
+        for (Strip strip : strips) {
+            if(strip.getId().longValue()==id){
+                return cont;
+            }
+            cont++;
+        }
+        return 8;
+        //return "IamDivNumber"+id;
+    }
     
     public String getDivId(long id){
         return "IamDivNumber"+id;
