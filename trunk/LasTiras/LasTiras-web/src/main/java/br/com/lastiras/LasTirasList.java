@@ -177,6 +177,17 @@ public class LasTirasList {
         }
     }
     
+     public String getCurrentStripeUrlTweeter(long id){
+        //20110823#IamDivNumber812
+        LasTirasStrip lasStrip = getCurrentStripe();
+        StringBuilder sb = new StringBuilder();
+        sb.append("http://ps71499.dreamhost.com:80/LasTiras-web/faces/strip.xhtml?q=");
+        sb.append(sdfReqParameter.format(lasStrip.getStripDate()));
+        sb.append("&i=");
+        sb.append(getIndexId(id,lasStrip));
+        return sb.toString();
+    }
+    
     public String getCurrentStripeUrl(long id){
         //20110823#IamDivNumber812
         LasTirasStrip lasStrip = getCurrentStripe();
@@ -245,10 +256,10 @@ public class LasTirasList {
         return url;
     }
         
-    public String acquireGooglePlusSrc(String stripUrl){
+    public String acquireGooglePlusSrc(int id){
         String start=
                 "https://plusone.google.com/u/0/_/+1/fastbutton?"+
-                "url="+modifyUrl(stripUrl)+                
+                "url="+modifyUrl(getCurrentStripeUrl(id))+                
                 "&amp;size=standard"+
                 "&amp;count=true"+
                 "&amp;annotation="+

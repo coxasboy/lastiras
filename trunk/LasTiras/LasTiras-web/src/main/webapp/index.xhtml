@@ -57,14 +57,14 @@
                                                                     marginheight="0" 
                                                                     marginwidth="0" 
                                                                     scrolling="no" 
-                                                                    src="#{lasTirasList.acquireGooglePlusSrc(item.stripUrl)}" 
+                                                                    src="#{lasTirasList.acquireGooglePlusSrc(item.id)}" 
                                                                     style="width: 106px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 24px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="-1" vspace="0" width="100%" title="+1">
                                                                 </iframe></div></li>
                                                         <li class="tweet">
                                                             <div>
                                                                 <a href="https://twitter.com/share" 
                                                                    class="twitter-share-button" 
-                                                                   data-url="#{lasTirasList.getCurrentStripeUrl(item.id)}" 
+                                                                   data-url="#{lasTirasList.getCurrentStripeUrlTweeter(item.id)}" 
                                                                    data-count="horizontal" 
                                                                    data-via="lastirasbr"
                                                                    data-text="#{item.author.acquireNameWithHifen()}"
@@ -80,7 +80,7 @@
                                                                     scrolling="no" 
                                                                     frameborder="0"
                                                                     class="fb_ltr"
-                                                                    style="border-width: initial; z-index: 30px; border-color: initial; overflow-x: hidden; overflow-y: hidden; width: 450px; border-width: initial; border-color: initial; height: 29px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial;"
+                                                                    style="border-width: initial; z-index: 30px; border-color: initial; overflow-x: hidden; overflow-y: auto; width: 450px; border-width: initial; border-color: initial; height: 29px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial;"
                                                                     allowTransparency="true">
                                                                 </iframe>
                                                             </span>
