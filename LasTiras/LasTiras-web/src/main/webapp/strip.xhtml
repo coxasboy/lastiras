@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:g="http://base.google.com/ns/1.0"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+    <f:metadata>
+        <f:viewParam name="q" value="#{stripDisplay.currentDate}"/>
+        <f:viewParam name="i" value="#{stripDisplay.currentIndex}"/>
+    </f:metadata>
+    <h:head>
+        <title>Las Tiras</title>        
+        <h:outputScript name="lastiras.js" library="js"/>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+
+                <hr></hr>
+                <img src="#{stripDisplay.acquireImageUrl()}"/>
+                <hr></hr>
+
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
