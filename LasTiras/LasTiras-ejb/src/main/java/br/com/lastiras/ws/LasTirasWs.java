@@ -51,7 +51,7 @@ public class LasTirasWs {
     @WebMethod
     public LasTirasStrip getLasTirasByDate(String date) {
         try{
-            LasTirasStrip strip = lasTirasHandler.getIndexLasTiras(sdf.parse(date));
+            LasTirasStrip strip = lasTirasHandler.getLasTirasFromThisExactDate(sdf.parse(date));
             return strip;
         }
         catch(Exception e){

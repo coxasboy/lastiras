@@ -20,6 +20,21 @@ import javax.persistence.Query;
 public class LasTirasStripDao extends GenericDaoImpl<LasTirasStrip, Long> implements LasTirasStripDaoLocal {
 
     @Override
+    public LasTirasStrip getLasTirasFromThisExactDate(Date date){
+        Query query = getEntityManager().createQuery(
+                "SELECT x FROM " + getoClass().getSimpleName() + " x WHERE x.stripDate = ?1");
+        query.setParameter(1, date);
+        query.setMaxResults(1);
+        List<LasTirasStrip> list = (List<LasTirasStrip>)query.getResultList();
+        if(list==null || list.isEmpty()){
+            return null;
+        }
+        else{
+            return list.get(0);
+        }
+    }
+    
+    @Override
     public List<LasTirasStrip> getLasTirasOldierThenThis(Date date){
         Query query = getEntityManager().createQuery(
                 "SELECT x FROM " + getoClass().getSimpleName() + " x WHERE x.stripDate < ?1 order by x.stripDate desc");
