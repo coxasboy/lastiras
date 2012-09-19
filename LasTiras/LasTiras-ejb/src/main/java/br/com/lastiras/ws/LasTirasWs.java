@@ -9,11 +9,11 @@ import br.com.lastiras.business.LasTirasStripHandlerLocal;
 import br.com.lastiras.business.VisitiHandlerLocal;
 import br.com.lastiras.persistence.Email;
 import br.com.lastiras.persistence.LasTirasStrip;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
-import javax.jws.WebParam;
 import javax.ejb.Stateless;
 
 /**
@@ -33,12 +33,25 @@ public class LasTirasWs {
     @EJB
     private VisitiHandlerLocal visitHandler;
     
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    
     
     /** This is a sample web service operation */
     @WebMethod
     public LasTirasStrip getLasTirasFromToday() {
         try{
             LasTirasStrip strip = lasTirasHandler.getLasTirasFromToday();
+            return strip;
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
+    
+    @WebMethod
+    public LasTirasStrip getLasTirasByDate(String date) {
+        try{
+            LasTirasStrip strip = lasTirasHandler.getIndexLasTiras(sdf.parse(date));
             return strip;
         }
         catch(Exception e){
