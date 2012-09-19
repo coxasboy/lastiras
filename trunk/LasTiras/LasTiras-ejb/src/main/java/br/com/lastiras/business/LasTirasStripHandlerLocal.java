@@ -35,4 +35,6 @@ public interface LasTirasStripHandlerLocal {
 
     public br.com.lastiras.persistence.LasTirasStrip getOlderLasTiras();
     
+    public LasTirasStrip getLasTirasFromThisExactDate(Date date);
+    
 }

@@ -37,6 +37,12 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
     }
     
     @Override
+    public LasTirasStrip getLasTirasFromThisExactDate(Date date){
+        LasTirasStrip strip = lasTirasDao.getLasTirasFromThisExactDate(date);
+        return strip;
+    }
+    
+    @Override
     public List<LasTirasStrip> getLasTirasEqualOrOldierThenThis(Date date){
         logger.log(Level.INFO,"Getting las tiras oldier then: " + date);
         List<LasTirasStrip> strip = lasTirasDao.getLasTirasEqualOrOldierThenThis(date);
