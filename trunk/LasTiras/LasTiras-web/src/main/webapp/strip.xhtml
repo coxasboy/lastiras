@@ -15,11 +15,17 @@
     <h:body>
         <f:view>
             <h:form>
-                
-                <a href="http://www.lastiras.com">
-                    <img src="#{stripDisplay.acquireImageUrl()}"/>
-                </a>                
-
+                <h:panelGrid columns="1">
+                    <h:panelGrid columns="2">
+                        <a href="http://www.lastiras.com">
+                            <img src="resources/images/las-tiras-logo.jpg" width="160" height="120" alt="Las Tiras!!!" title="Las Tiras"/>
+                        </a>
+                        <h:outputText value="CLIQUE NAS MENINAS!!!"/>
+                    </h:panelGrid>        
+                    <a href="http://www.lastiras.com">
+                        <img src="#{stripDisplay.acquireImageUrl()}"/>
+                    </a>                
+                </h:panelGrid>        
             </h:form>
         </f:view>
     </h:body>
