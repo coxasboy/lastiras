@@ -71,18 +71,13 @@
                                                                    original_referer="#{lasTirasList.getCurrentStripeUrl(item.id)}"
                                                                    >Tweet</a>
                                                             </div></li>
-                                                        <li class="facebook" style="z-index: 30;">
+                                                        <li class="facebook" style="z-index: 30; text-align: left">
                                                             <div id="fb-root">
                                                             </div>       
                                                             <span style="z-index: 30;">
-                                                                <iframe 
-                                                                    src="#{lasTirasList.acquireFacebookSrc(item.id)}" 
-                                                                    scrolling="no" 
-                                                                    frameborder="0"
-                                                                    class="fb_ltr"
-                                                                    style="border-width: initial; z-index: 30px; border-color: initial; overflow-x: hidden; overflow-y: auto; width: 450px; border-width: initial; border-color: initial; height: 29px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial;"
-                                                                    allowTransparency="true">
-                                                                </iframe>
+                                                                <a href="#{lasTirasList.getFacebookSharerPage(item.id)}">
+                                                                   <img src="resources/images/fbbutton.png"/>
+                                                                </a>
                                                             </span>
                                                         </li>
                                                     </ul><br/>

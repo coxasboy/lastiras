@@ -13,22 +13,22 @@
         <h:outputScript name="lastiras.js" library="js"/>
     </h:head>
     <h:body>
-        <f:view>
-            <h:form>
-                <h:panelGrid columns="1">
-                         
-                    <a href="http://www.lastiras.com">
-                        <img src="#{stripDisplay.acquireImageUrl()}"/>
-                    </a>  
-                    <h:panelGrid columns="2">
-                        <a href="http://www.lastiras.com">
-                            <img src="resources/images/las-tiras-logo.jpg" width="100" height="75" alt="Las Tiras!!!" title="Las Tiras"/>
-                        </a>
-                        <h:outputText value="CLIQUE NAS MENINAS!!!"/>
-                    </h:panelGrid>   
-                </h:panelGrid>        
-            </h:form>
-        </f:view>
+        
+        <ui:composition template="commons/template.xhtml">    
+            
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <div style="margin-right: auto; margin-left: auto">
+                            <a href="http://www.lastiras.com">
+                                <img src="#{stripDisplay.acquireImageUrl()}"/>
+                            </a>  
+                        </div>
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+        
     </h:body>
 </html>
 
