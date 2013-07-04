@@ -13,7 +13,7 @@ import javax.ejb.Local;
 @Local
 public interface AuthorHandlerLocal {
 
-    public boolean addAuthor(java.lang.String name, java.lang.String webSite, java.lang.String imageUrl);
+    public boolean addAuthor(java.lang.String name, java.lang.String webSite, java.lang.String imageUrl, String twitterAccount);
 
     public boolean updateAuthor(br.com.lastiras.persistence.Author author);
 
@@ -21,6 +21,6 @@ public interface AuthorHandlerLocal {
 
     public java.util.List<br.com.lastiras.persistence.Author> getAll();
 
-    public boolean updateAuthor(java.lang.Long id, java.lang.String name, java.lang.String webSite, java.lang.String imageUrl);
+    public boolean updateAuthor(java.lang.Long id, java.lang.String name, java.lang.String webSite, java.lang.String imageUrl, java.lang.String twitterAccount);
     
 }
