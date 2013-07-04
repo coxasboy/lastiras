@@ -25,6 +25,8 @@ public class AuthorCreator {
     
     String message;
     
+    String twitterAccount;
+    
     Long id;
     
     @EJB AuthorHandlerLocal authorHandler;
@@ -78,14 +80,22 @@ public class AuthorCreator {
     public void setWebSite(String webSite) {
         this.webSite = webSite;
     }
+
+    public String getTwitterAccount() {
+        return twitterAccount;
+    }
+
+    public void setTwitterAccount(String twitterAccount) {
+        this.twitterAccount = twitterAccount;
+    }
     
     public void saveAuthor(){
         boolean result = false;
         if(id!=null){
-            result = authorHandler.updateAuthor(id, name, webSite, bannerUrl);
+            result = authorHandler.updateAuthor(id, name, webSite, bannerUrl, twitterAccount);
         }
         else{
-            result = authorHandler.addAuthor(name, webSite, bannerUrl);
+            result = authorHandler.addAuthor(name, webSite, bannerUrl, twitterAccount);
         }
         if(result){
             message = "Operação realizada com sucesso";

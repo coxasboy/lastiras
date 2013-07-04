@@ -25,10 +25,10 @@ public class AuthorHandler implements AuthorHandlerLocal {
     private static final Logger logger = Logger.getLogger(AuthorDaoLocal.class.getName());
     
     @Override
-    public boolean addAuthor(String name, String webSite, String imageUrl){
+    public boolean addAuthor(String name, String webSite, String imageUrl, String twitterAccount){
         try{
             if(isValidParameters(name,webSite,imageUrl)){
-                Author author = createInstance(name, webSite, imageUrl);
+                Author author = createInstance(name, webSite, imageUrl, twitterAccount);
                 author = authorDao.create(author);           
                 return true;
             }
@@ -41,14 +41,15 @@ public class AuthorHandler implements AuthorHandlerLocal {
     }
     
     @Override
-    public boolean updateAuthor(Long id, String name, String webSite, String imageUrl){
+    public boolean updateAuthor(Long id, String name, String webSite, String imageUrl, String twitterAccount){
         try{
             Author author = authorDao.read(id);
             if(author!=null){
                 author.setName(name);
                 author.setImageUrl(imageUrl);
                 author.setWebSite(webSite);
-                authorDao.update(author);
+                author.setTwitterAccount(twitterAccount);
+                authorDao.update(author);                
                 return true;
             }
             return false;
@@ -106,11 +107,12 @@ public class AuthorHandler implements AuthorHandlerLocal {
         return true;
     }
     
-    private Author createInstance(String name, String webSite, String imageUrl){
+    private Author createInstance(String name, String webSite, String imageUrl, String twitterAccount){
         Author author = new Author();
         author.setName(name);
         author.setWebSite(webSite);
         author.setImageUrl(imageUrl);
+        author.setTwitterAccount(twitterAccount);
         return author;
     }
     

@@ -31,8 +31,19 @@ public class Author implements Serializable {
     @Column(name="imageurl",length=1024)
     private String imageUrl;
     
-    public String acquireNameWithHifen(){
-        return name + " - ";
+    @Column(name="twitteraccount", length=1024)
+    private String twitterAccount;
+    
+    public String acquireNameWithTwitterAccountAndHifen(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        sb.append(" ");
+        if(twitterAccount!=null){
+            sb.append(twitterAccount);
+            sb.append(" ");
+        }
+        sb.append("- ");
+        return sb.toString();
     }
 
     public Long getId() {
@@ -67,13 +78,22 @@ public class Author implements Serializable {
         this.webSite = webSite;
     }
 
+    public String getTwitterAccount() {
+        return twitterAccount;
+    }
+
+    public void setTwitterAccount(String twitterAccount) {
+        this.twitterAccount = twitterAccount;
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
