@@ -233,7 +233,7 @@ public class LasTirasList {
         StringBuilder sb = new StringBuilder();
         sb.append("http://ps71499.dreamhost.com:80/LasTiras-web/faces/strip.xhtml?q=");
         sb.append(sdfReqParameter.format(lasStrip.getStripDate()));
-        sb.append("%26i=");
+        sb.append("&i=");
         sb.append(getIndexId(id,lasStrip));
         return sb.toString();
     }
