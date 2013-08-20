@@ -8,8 +8,10 @@ import br.com.lastiras.dao.LasTirasStripDaoLocal;
 import br.com.lastiras.persistence.LasTirasStrip;
 import br.com.lastiras.persistence.Strip;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -92,7 +94,7 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
     @Override
     public LasTirasStrip getLasTirasFromToday(){
         try{
-            Date date = new Date();
+            Date date = getTodayDateInGMTMinus3Hours();
             List<LasTirasStrip> stripFromToday = lasTirasDao.getByField("stripDate", (date));
             logger.info("List: " + stripFromToday.size());
             if((stripFromToday==null||stripFromToday.isEmpty())){
@@ -106,6 +108,18 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
             logger.log(Level.SEVERE, "Erro pegando tira de hoje",e);
             return null;
         }
+    }
+    
+    public Date getTodayDateInGMTMinus3Hours(){
+        Calendar now = Calendar.getInstance();
+        TimeZone tz = Calendar.getInstance().getTimeZone(); 
+        long offSet = (tz.getOffset((new Date()).getTime()));
+        logger.log(Level.INFO, "Off set: " + offSet);
+        long millissecondsToAdd = (3000*3600) - offSet;
+        logger.log(Level.INFO, "Milli to add: " + millissecondsToAdd);
+        now.add(Calendar.MILLISECOND, (int)millissecondsToAdd);
+        logger.log(Level.INFO, "Now: " + now.getTime());
+        return now.getTime();        
     }
     
     @Override
