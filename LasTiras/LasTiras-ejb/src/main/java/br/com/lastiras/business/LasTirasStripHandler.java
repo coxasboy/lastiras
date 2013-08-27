@@ -7,6 +7,7 @@ package br.com.lastiras.business;
 import br.com.lastiras.dao.LasTirasStripDaoLocal;
 import br.com.lastiras.persistence.LasTirasStrip;
 import br.com.lastiras.persistence.Strip;
+import br.com.lastiras.util.DateCorrector;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,6 +30,10 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
     private static final SimpleDateFormat sdfReturn = new SimpleDateFormat("yyyy-MM-dd");
     
     private static final Logger logger = Logger.getLogger(LasTirasStripHandler.class.getSimpleName());
+    
+    static {
+        TimeZone.setDefault(TimeZone.getTimeZone("America/Sao_Paulo"));
+    }
     
     @EJB
     private LasTirasStripDaoLocal lasTirasDao;
@@ -94,7 +99,8 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
     @Override
     public LasTirasStrip getLasTirasFromToday(){
         try{
-            Date date = getTodayDateInGMTMinus3Hours();
+            Date date = DateCorrector.getNow();
+            logger.info("Now: " + date);
             List<LasTirasStrip> stripFromToday = lasTirasDao.getByField("stripDate", (date));
             logger.info("List: " + stripFromToday.size());
             if((stripFromToday==null||stripFromToday.isEmpty())){
@@ -110,21 +116,15 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
         }
     }
     
-    public Date getTodayDateInGMTMinus3Hours(){
-        Calendar now = Calendar.getInstance();
-        TimeZone tz = Calendar.getInstance().getTimeZone(); 
-        long offSet = (tz.getOffset((new Date()).getTime()));
-        logger.log(Level.INFO, "Off set: " + offSet);
-        long millissecondsToAdd = (3000*3600) - offSet;
-        logger.log(Level.INFO, "Milli to add: " + millissecondsToAdd);
-        now.add(Calendar.MILLISECOND, (int)millissecondsToAdd);
-        logger.log(Level.INFO, "Now: " + now.getTime());
-        return now.getTime();        
-    }
-    
     @Override
     public br.com.lastiras.persistence.LasTirasStrip getIndexLasTiras(Date date){
+        LasTirasStrip strip= getLasTirasFromThisExactDate(date);
+        logger.info("Strip: " + strip);
+        if(strip!=null){
+            return strip;
+        }
         List<LasTirasStrip> strips = getLasTirasEqualOrOldierThenThis(date);
+        logger.info("Strips loaded: " + strips.size());
         if(strips==null || strips.size()==0){
             strips = getLasTirasNewerThenThis(date);
             if(strips==null || strips.size()==0){
@@ -134,6 +134,7 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
                 return strips.get(0);    
             }
         }
+        logger.info("Strip date: " + strips.get(0).getStripDate());
         return strips.get(0);    
     }
     
@@ -157,7 +158,7 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
                 return strip;
             }
             else{
-                List<LasTirasStrip> lasTiras = getLasTirasOldierThenThis(new Date());
+                List<LasTirasStrip> lasTiras = getLasTirasOldierThenThis(DateCorrector.getNow());
                 if(lasTiras!=null && !lasTiras.isEmpty()){
                     return lasTiras.get(0);
                 }

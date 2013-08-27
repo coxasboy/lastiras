@@ -9,6 +9,7 @@ import br.com.lastiras.business.LasTirasStripHandlerLocal;
 import br.com.lastiras.business.VisitiHandlerLocal;
 import br.com.lastiras.persistence.LasTirasStrip;
 import br.com.lastiras.persistence.Strip;
+import br.com.lastiras.util.DateCorrector;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -116,6 +117,7 @@ public class LasTirasList {
             if (dateString == null) {
                 return null;
             }
+            logger.info("Parameter date: " + dateString);
             return sdfReqParameter.parse(dateString);
         } catch (Exception e) {
             return null;
@@ -133,12 +135,15 @@ public class LasTirasList {
         
         if (strip == null) {
             Date stripDate = getParameterDate();
+            logger.info("Strip date: "+ stripDate);
             if (stripDate == null) {
+                logger.info("Getting newer las tiras....");
                 this.strip = this.lasTirasHandler.getNewerLasTiras();
             } else {
-                Date today = new Date();
-                if(stripDate.after(today)){
-                    this.strip = this.lasTirasHandler.getIndexLasTiras(today);
+                Date now = DateCorrector.getNow();
+                if(stripDate.after(now)){
+                    logger.info("Now and Parameter: " + now + "/" + stripDate);
+                    this.strip = this.lasTirasHandler.getIndexLasTiras(now);
                 }
                 else{
                     this.strip = this.lasTirasHandler.getIndexLasTiras(stripDate);
@@ -240,7 +245,7 @@ public class LasTirasList {
     
     public String acquireStripDate() {
         Date date = this.getCurrentStripe().getStripDate();
-        logger.log(Level.INFO, "Date: " + date);
+        logger.info("Date: " + date);
         return sdf.format(date);
     }
     
