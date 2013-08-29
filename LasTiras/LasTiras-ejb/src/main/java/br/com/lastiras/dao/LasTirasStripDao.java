@@ -66,6 +66,36 @@ public class LasTirasStripDao extends GenericDaoImpl<LasTirasStrip, Long> implem
     }
     
     @Override
+    public LasTirasStrip getLasTirasBefore(Date date){
+        Query query = getEntityManager().createQuery(
+                "SELECT x FROM " + getoClass().getSimpleName() + " x WHERE x.stripDate < ?1 order by x.stripDate desc");
+        query.setParameter(1, date);
+        query.setMaxResults(1);
+        List<LasTirasStrip> resultList = (List<LasTirasStrip>)query.getResultList();
+        if(resultList==null || resultList.isEmpty()){
+            return null;
+        }
+        else{
+            return resultList.get(0);
+        }
+    }
+    
+    @Override
+    public LasTirasStrip getLasTirasAfter(Date date){
+        Query query = getEntityManager().createQuery(
+                "SELECT x FROM " + getoClass().getSimpleName() + " x WHERE x.stripDate > ?1 order by x.stripDate");
+        query.setParameter(1, date);
+        query.setMaxResults(1);
+        List<LasTirasStrip> resultList = (List<LasTirasStrip>)query.getResultList();
+        if(resultList==null || resultList.isEmpty()){
+            return null;
+        }
+        else{
+            return resultList.get(0);
+        }
+    }
+    
+    @Override
     public List<LasTirasStrip> getLasTirasNewerThenThis(Date date){
         Query query = getEntityManager().createQuery(
                 "SELECT x FROM " + getoClass().getSimpleName() + " x WHERE x.stripDate > ?1 order by x.stripDate");
