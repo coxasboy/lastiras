@@ -67,26 +67,23 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
     
     @Override
     public List<LasTirasStrip> getLasTirasNewerThenThis(Date date){
-        Date aux = addADayToThisDateClock(date);
-        logger.log(Level.INFO,"Getting las tiras newer then: " + aux);
-        List<LasTirasStrip> strip = lasTirasDao.getLasTirasNewerThenThis(aux);
+        logger.log(Level.INFO,"Getting las tiras newer then: " + date);
+        List<LasTirasStrip> strip = lasTirasDao.getLasTirasNewerThenThis(date);
         logger.log(Level.INFO,"Retrieve: " + strip.size());
         return strip;
     }
     
     @Override
     public LasTirasStrip getLasTirasAfter(Date date){
-        Date aux = addADayToThisDateClock(date);
-        logger.log(Level.INFO,"Getting las tiras after then: " + aux);
-        LasTirasStrip strip = lasTirasDao.getLasTirasAfter(aux);
+        logger.log(Level.INFO,"Getting las tiras after then: " + date);
+        LasTirasStrip strip = lasTirasDao.getLasTirasAfter(date);
         return strip;
     }
     
     @Override
     public LasTirasStrip getLasTirasBefore(Date date){
-        Date aux = addADayToThisDateClock(date);
-        logger.log(Level.INFO,"Getting las tiras before then: " + aux);
-        LasTirasStrip strip = lasTirasDao.getLasTirasBefore(aux);
+        logger.log(Level.INFO,"Getting las tiras before then: " + date);
+        LasTirasStrip strip = lasTirasDao.getLasTirasBefore(date);
         return strip;
     }
     
@@ -135,17 +132,16 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
     
     @Override
     public br.com.lastiras.persistence.LasTirasStrip getIndexLasTiras(Date date){
-        Date aux = addADayToThisDateClock(date);
-        logger.info("Loading strip of: " + aux);
-        LasTirasStrip strip= getLasTirasFromThisExactDate(aux);
+        logger.info("Loading strip of: " + date);
+        LasTirasStrip strip= getLasTirasFromThisExactDate(date);
         logger.info("Strip: " + strip);
         if(strip!=null){
             return strip;
         }
-        List<LasTirasStrip> strips = getLasTirasEqualOrOldierThenThis(aux);
+        List<LasTirasStrip> strips = getLasTirasEqualOrOldierThenThis(date);
         logger.info("Strips loaded: " + strips.size());
         if(strips==null || strips.size()==0){
-            strips = getLasTirasNewerThenThis(aux);
+            strips = getLasTirasNewerThenThis(date);
             if(strips==null || strips.size()==0){
                 return null;
             }
@@ -157,12 +153,12 @@ public class LasTirasStripHandler implements LasTirasStripHandlerLocal {
         return strips.get(0);    
     }
     
-    private Date addADayToThisDateClock(Date date){
-        Calendar instance = Calendar.getInstance();
-        instance.setTime(date);
-        instance.add(Calendar.DAY_OF_MONTH, 1);
-        return instance.getTime();
-    }
+//    private Date addADayToThisDateClock(Date date){
+//        Calendar instance = Calendar.getInstance();
+//        instance.setTime(date);
+//        instance.add(Calendar.DAY_OF_MONTH, 1);
+//        return instance.getTime();
+//    }
     
     public LasTirasStrip getIndexLasTiras(int counter){
         LasTirasStrip strip = getNewerLasTiras();

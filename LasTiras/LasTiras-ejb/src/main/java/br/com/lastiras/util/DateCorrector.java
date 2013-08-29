@@ -16,8 +16,7 @@ public class DateCorrector {
     
     
     public static Date getNow(){
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
-        calendar.add(Calendar.HOUR_OF_DAY, 8);
+        Calendar calendar = Calendar.getInstance();
         return calendar.getTime();
     }
     
