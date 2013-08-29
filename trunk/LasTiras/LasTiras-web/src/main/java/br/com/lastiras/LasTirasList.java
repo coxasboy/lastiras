@@ -10,9 +10,11 @@ import br.com.lastiras.business.VisitiHandlerLocal;
 import br.com.lastiras.persistence.LasTirasStrip;
 import br.com.lastiras.persistence.Strip;
 import br.com.lastiras.util.DateCorrector;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,7 +31,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean(name = "lasTirasList")
 @SessionScoped
-public class LasTirasList {
+public class LasTirasList implements Serializable{
     
     @EJB
     private LasTirasStripHandlerLocal lasTirasHandler;
@@ -84,26 +86,32 @@ public class LasTirasList {
     
     public String getNextDate() {
         Date date = getParameterDate();
-        LasTirasStrip lasStrip = getCurrentStripe();
-        List<LasTirasStrip> newOnes = lasTirasHandler.getLasTirasNewerThenThis(lasStrip.getStripDate());
-        if(newOnes==null || newOnes.isEmpty()){
-            date = lasStrip.getStripDate();
+        if(date == null){
+            date = DateCorrector.getNow();
+        }
+        LasTirasStrip theOneAfter = lasTirasHandler.getLasTirasAfter(date);
+        if(theOneAfter==null){
+            date = DateCorrector.getNow();
         }
         else{
-            date = newOnes.get(0).getStripDate();
+            date = theOneAfter.getStripDate();
         }
         return sdfReqParameter.format(date);
     }
     
     public String getLastDate() {
         Date date = getParameterDate();
-        
-        LasTirasStrip lasStrip = getCurrentStripe();
-        
-        date = lasStrip.getStripDate();
-        
-        Date dayBefore = new Date(date.getTime() - (1000 * 60 * 60 * 24));
-        return sdfReqParameter.format(dayBefore);
+        if(date == null){
+            date = DateCorrector.getNow();
+        }
+        LasTirasStrip oldOnes = lasTirasHandler.getLasTirasBefore(date);
+        if(oldOnes==null){
+            date = DateCorrector.getNow();
+        }
+        else{
+            date = oldOnes.getStripDate();
+        }
+        return sdfReqParameter.format(date);
     }
     
     private String getPageParameter() {
@@ -143,9 +151,10 @@ public class LasTirasList {
                 Date now = DateCorrector.getNow();
                 if(stripDate.after(now)){
                     logger.info("Now and Parameter: " + now + "/" + stripDate);
-                    this.strip = this.lasTirasHandler.getIndexLasTiras(now);
+                    this.strip = this.lasTirasHandler.getNewerLasTiras();
                 }
                 else{
+                    logger.info("Getting index: " + stripDate);
                     this.strip = this.lasTirasHandler.getIndexLasTiras(stripDate);
                 }
             }

@@ -5,6 +5,7 @@
 package br.com.lastiras.dao;
 
 import br.com.lastiras.persistence.LasTirasStrip;
+import java.util.Date;
 import javax.ejb.Local;
 
 /**
@@ -23,5 +24,9 @@ public interface LasTirasStripDaoLocal extends GenericDao<LasTirasStrip, Long> {
     public br.com.lastiras.persistence.LasTirasStrip getLastLasTiras();
 
     public br.com.lastiras.persistence.LasTirasStrip getLasTirasFromThisExactDate(java.util.Date date);
+
+    public LasTirasStrip getLasTirasAfter(Date date);
+
+    public LasTirasStrip getLasTirasBefore(Date date);
     
 }
