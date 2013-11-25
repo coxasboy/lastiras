@@ -4,11 +4,13 @@
  */
 package br.com.lastiras.dao;
 
+import br.com.lastiras.business.LasTirasStripHandler;
 import br.com.lastiras.persistence.LasTirasStrip;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
@@ -19,6 +21,8 @@ import javax.persistence.Query;
 @Stateless
 public class LasTirasStripDao extends GenericDaoImpl<LasTirasStrip, Long> implements LasTirasStripDaoLocal {
 
+    private static final Logger logger = Logger.getLogger(LasTirasStripDao.class.getSimpleName());
+    
     @Override
     public LasTirasStrip getLasTirasFromThisExactDate(Date date){
         Query query = getEntityManager().createQuery(

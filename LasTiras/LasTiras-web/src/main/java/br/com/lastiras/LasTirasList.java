@@ -61,7 +61,7 @@ public class LasTirasList implements Serializable{
     }
     
     public String getLasTirasLink(){
-        return "http://ps71499.dreamhost.com:80/LasTiras-web/faces/index.xhtml?q="+getCurrentFormattedDate();
+        return "http://192.241.185.26:80/LasTiras-web/faces/index.xhtml?q="+getCurrentFormattedDate();
     }
     
     public String getFacebookSrc(){
@@ -197,7 +197,7 @@ public class LasTirasList implements Serializable{
         //20110823#IamDivNumber812
         LasTirasStrip lasStrip = getCurrentStripe();
         StringBuilder sb = new StringBuilder();
-        sb.append("http://ps71499.dreamhost.com:80/LasTiras-web/faces/strip.xhtml?q=");
+        sb.append("http://192.241.185.26:80/LasTiras-web/faces/strip.xhtml?q=");
         sb.append(sdfReqParameter.format(lasStrip.getStripDate()));
         sb.append("&i=");
         sb.append(getIndexId(id,lasStrip));
@@ -205,7 +205,6 @@ public class LasTirasList implements Serializable{
     }
     
     public String getFacebookSharerPage(long id){
-        //https://www.facebook.com/sharer.php?s=100&p[url]=http%3A%2F%2Fps71499.dreamhost.com%2FLasTiras-web%2Ffaces%2Fstrip.xhtml%3Fq%3D20130607%26i%3D1&p[images][0]=http%3A%2F%2F2.bp.blogspot.com%2F_m8u1XODqWpc%2FS3WwhPf23ZI%2FAAAAAAAAAcU%2FBVU4H1QyYsY%2Fs1600%2Fwillpower.jpg&p[title]=TesteMM&p[summary]=lastiras"
         StringBuilder sb = new StringBuilder();
         sb.append("https://www.facebook.com/sharer.php?s=100&");
         try {
@@ -245,7 +244,7 @@ public class LasTirasList implements Serializable{
         //20110823#IamDivNumber812
         LasTirasStrip lasStrip = getCurrentStripe();
         StringBuilder sb = new StringBuilder();
-        sb.append("http://ps71499.dreamhost.com:80/LasTiras-web/faces/strip.xhtml?q=");
+        sb.append("http://192.241.185.26:80/LasTiras-web/faces/strip.xhtml?q=");
         sb.append(sdfReqParameter.format(lasStrip.getStripDate()));
         sb.append("&i=");
         sb.append(getIndexId(id,lasStrip));
