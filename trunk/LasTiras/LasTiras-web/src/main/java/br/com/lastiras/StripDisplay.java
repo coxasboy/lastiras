@@ -95,10 +95,10 @@ public class StripDisplay {
                 }
                 cont = cont + 1;
             }
-            return "http://ps71499.dreamhost.com/LasTiras-web/resources/images/lastiraserror.jpg";
+            return "http://192.241.185.26/LasTiras-web/resources/images/lastiraserror.jpg";
         }
         else{
-            return "http://ps71499.dreamhost.com/LasTiras-web/resources/images/lastiraserror.jpg";
+            return "http://192.241.185.26/LasTiras-web/resources/images/lastiraserror.jpg";
         }        
     }
     

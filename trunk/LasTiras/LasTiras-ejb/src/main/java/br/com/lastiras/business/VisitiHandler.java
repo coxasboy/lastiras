@@ -46,7 +46,7 @@ public class VisitiHandler implements VisitiHandlerLocal {
     @Override
     public List<Visit> getVisitsCurrentDay(){
         try{
-            Calendar c = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
+            Calendar c = Calendar.getInstance();
             Date date = c.getTime();
             c.set(Calendar.MILLISECOND, 0);
             c.set(Calendar.SECOND, 0);
@@ -63,7 +63,7 @@ public class VisitiHandler implements VisitiHandlerLocal {
     @Override
     public List<Visit> getVisitsCurrentMonth(){
         try{
-            Calendar c = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
+            Calendar c = Calendar.getInstance();
             Date date = c.getTime();
             c.set(Calendar.MILLISECOND, 0);
             c.set(Calendar.SECOND, 0);
