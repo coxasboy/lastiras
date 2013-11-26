@@ -61,7 +61,7 @@ public class LasTirasList implements Serializable{
     }
     
     public String getLasTirasLink(){
-        return "http://192.241.185.26:80/LasTiras-web/faces/index.xhtml?q="+getCurrentFormattedDate();
+        return "http://lastiras.com/LasTiras-web/faces/index.xhtml?q="+getCurrentFormattedDate();
     }
     
     public String getFacebookSrc(){
@@ -197,7 +197,7 @@ public class LasTirasList implements Serializable{
         //20110823#IamDivNumber812
         LasTirasStrip lasStrip = getCurrentStripe();
         StringBuilder sb = new StringBuilder();
-        sb.append("http://192.241.185.26:80/LasTiras-web/faces/strip.xhtml?q=");
+        sb.append("http://lastiras.com/LasTiras-web/faces/strip.xhtml?q=");
         sb.append(sdfReqParameter.format(lasStrip.getStripDate()));
         sb.append("&i=");
         sb.append(getIndexId(id,lasStrip));
@@ -244,7 +244,7 @@ public class LasTirasList implements Serializable{
         //20110823#IamDivNumber812
         LasTirasStrip lasStrip = getCurrentStripe();
         StringBuilder sb = new StringBuilder();
-        sb.append("http://192.241.185.26:80/LasTiras-web/faces/strip.xhtml?q=");
+        sb.append("http://lastiras.com/LasTiras-web/faces/strip.xhtml?q=");
         sb.append(sdfReqParameter.format(lasStrip.getStripDate()));
         sb.append("&i=");
         sb.append(getIndexId(id,lasStrip));
