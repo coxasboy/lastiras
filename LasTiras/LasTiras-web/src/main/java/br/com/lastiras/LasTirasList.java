@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -46,10 +47,18 @@ public class LasTirasList implements Serializable{
     private boolean visited = false;
     private static final SimpleDateFormat sdfReqParameter = new SimpleDateFormat("yyyyMMdd");
     private String currentDate;
+    private String [] files = {"logo_lastiras_baixa.jpg", "las-tiras-logo.jpg"};
+    private Random r = new Random();
+    
     @EJB
     private VisitiHandlerLocal visitHandler;
     
     public LasTirasList() {
+    }
+    
+    public String getLogo(){
+        int randomInt = r.nextInt(files.length);
+        return files[randomInt];
     }
     
     public String getCurrentDate() {
@@ -100,11 +109,9 @@ public class LasTirasList implements Serializable{
     }
     
     public String getLastDate() {
-        Date date = getParameterDate();
-        if(date == null){
-            date = DateCorrector.getNow();
-        }
-        LasTirasStrip oldOnes = lasTirasHandler.getLasTirasBefore(date);
+        Date date = null;
+        LasTirasStrip current = getCurrentStripe();
+        LasTirasStrip oldOnes = lasTirasHandler.getLasTirasBefore(current.getStripDate());
         if(oldOnes==null){
             date = DateCorrector.getNow();
         }
