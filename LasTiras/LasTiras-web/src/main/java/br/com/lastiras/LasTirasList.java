@@ -47,7 +47,7 @@ public class LasTirasList implements Serializable{
     private boolean visited = false;
     private static final SimpleDateFormat sdfReqParameter = new SimpleDateFormat("yyyyMMdd");
     private String currentDate;
-    private String [] files = {"logo_lastiras_baixa.jpg", "las-tiras-logo.jpg"};
+    private String [] files = {"logo_lastiras_baixa_copa.jpg", "las-tiras-logo_copa.jpg"};
     private Random r = new Random();
     
     @EJB
